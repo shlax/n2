@@ -5,6 +5,10 @@ import org.n2.N2Session;
 
 public class N2Join {
 
+    public static N2Join join(N2Session session){
+        return new N2Join(session);
+    }
+
     final N2Session session;
 
     public N2Join(N2Session session) {
