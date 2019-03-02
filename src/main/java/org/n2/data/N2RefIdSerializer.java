@@ -1,7 +1,7 @@
 package org.n2.data;
 
 import org.h2.mvstore.WriteBuffer;
-import org.n2.N2RefId;
+import org.n2.N2Link;
 
 import java.nio.ByteBuffer;
 
@@ -15,15 +15,15 @@ public class N2RefIdSerializer implements Serializer{
 
     @Override
     public void write(WriteBuffer buff, Object obj) {
-        N2RefId id = (N2RefId)obj;
+        N2Link id = (N2Link)obj;
         stringSerializer.write(buff, id.label());
         typeSerializer.write(buff, id.id());
     }
 
     @Override
-    public N2RefId read(ByteBuffer buff) {
+    public N2Link read(ByteBuffer buff) {
         String l = stringSerializer.read(buff);
         Comparable c = (Comparable) typeSerializer.read(buff);
-        return new N2RefId(l, c);
+        return new N2Link(l, c);
     }
 }

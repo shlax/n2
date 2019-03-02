@@ -115,7 +115,7 @@ public class TypeSerializer implements Serializer{
         }else if(obj instanceof N2Id){
             buff.put((byte) 15);
             n2IdSerializer.write(buff, obj);
-        }else if(obj instanceof N2RefId){
+        }else if(obj instanceof N2Link){
             buff.put((byte) 16);
             n2RefIdSerializer.write(buff, obj);
         }else if(obj instanceof N2Object){

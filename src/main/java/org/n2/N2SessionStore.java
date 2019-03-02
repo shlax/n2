@@ -5,30 +5,30 @@ import org.h2.mvstore.tx.TransactionMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class N2SessionStore<K> {
+public class N2SessionStore<K, V> {
     final N2Store<K> label;
-    final TransactionMap<K, Object> store;
+    final TransactionMap<K, V> store;
 
-    N2SessionStore(N2Store<K> label, TransactionMap<K, Object> store) {
+    N2SessionStore(N2Store<K> label, TransactionMap<K, V> store) {
         this.label = label;
         this.store = store;
     }
 
-    public N2RefId<K> add(Object data){
+    public N2Link<K> add(V data){
         K id = label.generateId();
         store.put(id, data);
-        return new N2RefId<>(label.name, id);
+        return new N2Link<>(label.name, id);
     }
 
-    public Object get(K id){
+    public V get(K id){
         return store.get(id);
     }
 
-    public Object put(K id, Object data){
+    public V put(K id, V data){
         return store.put(id, data);
     }
 
-    public Object remove(K id){
+    public V remove(K id){
         return store.remove(id);
     }
 
@@ -36,7 +36,7 @@ public class N2SessionStore<K> {
         return store.keyIterator(from, to, false);
     }
 
-    public Iterator<Map.Entry<K, Object>> iterator(K from, K to){
+    public Iterator<Map.Entry<K, V>> iterator(K from, K to){
         return store.entryIterator(from, to);
     }
 

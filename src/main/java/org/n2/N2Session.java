@@ -15,10 +15,14 @@ public class N2Session implements AutoCloseable {
 
     final HashMap<N2Store, N2SessionStore> maps = new HashMap<>();
 
-    public N2SessionStore store(N2Store label){
-        N2SessionStore v = maps.get(label);
+    public <K, V> N2SessionStore<K, V> store(String label){
+        return store(database.store(label));
+    }
+
+    public <K, V> N2SessionStore<K, V> store(N2Store label){
+        N2SessionStore<K, V> v = maps.get(label);
         if(v == null){
-            v = new N2SessionStore(label, transaction.openMap(label.store));
+            v = new N2SessionStore<K, V>(label, transaction.openMap(label.store));
             maps.put(label, v);
         }
         return v;
