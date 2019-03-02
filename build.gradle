@@ -1,0 +1,10 @@
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+dependencies {
+    compile group: 'com.h2database', name: 'h2-mvstore', version: '1.4.198'
+
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.4.0'
+}
+
