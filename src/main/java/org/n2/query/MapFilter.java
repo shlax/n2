@@ -1,6 +1,5 @@
 package org.n2.query;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -33,7 +32,7 @@ public class MapFilter<K, V> extends NotNullFilter<Map<K, V>> {
         return new SetFilter<>(obj == null ? null : obj.keySet());
     }
 
-    public CollectionFilter<V, Collection<V>> values(){
+    public CollectionFilter<V> values(){
         return new CollectionFilter<>(obj == null ? null : obj.values());
     }
 

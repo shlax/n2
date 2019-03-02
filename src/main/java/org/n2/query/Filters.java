@@ -51,7 +51,7 @@ public class Filters {
         return new NotNullFilter(x);
     }
 
-    public static <T> CollectionFilter<T, Collection<T>> collection(Object x){
+    public static <T> CollectionFilter<T> collection(Object x){
         return new CollectionFilter(x instanceof Collection ? (Collection)x : null);
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class ListFilter<T> extends CollectionFilter<T, List<T>> {
+public class ListFilter<T> extends IterableFilter<T, List<T>> {
 
     public ListFilter(List<T> list) {
         super(list);
