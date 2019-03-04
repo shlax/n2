@@ -1,5 +1,5 @@
 .idea
 out
-test
+test/data
 .gradle
 n2.iml
