@@ -19,7 +19,7 @@ public class MapFilter<K, V> extends NotNullFilter<Map<K, V>> {
         return fn.apply(v);
     }
 
-    public boolean test(K key, Predicate<? super V> predicate){
+    public boolean test(Object key, Predicate<? super V> predicate){
         if(obj == null) return false;
 
         V v = obj.get(key);
