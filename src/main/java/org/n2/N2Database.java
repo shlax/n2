@@ -11,10 +11,14 @@ public class N2Database implements AutoCloseable {
 
     final N2Config config;
 
+    public N2Database(MVStore mvStore){
+        this(mvStore, new N2Config.BUilder().build());
+    }
+
     public N2Database(MVStore mvStore, N2Config config){
         this.mvStore = mvStore;
         this.config = config;
-        transactionStore = new TransactionStore(mvStore);
+        transactionStore = new TransactionStore(this.mvStore);
     }
 
     final HashMap<String, N2Store> stores = new HashMap<>();

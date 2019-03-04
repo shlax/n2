@@ -5,7 +5,7 @@ import org.n2.data.Serializer;
 
 import java.nio.ByteBuffer;
 
-public class N2ObjectDataType<T extends Enum<T>, V> extends AbstractDataType{
+public class N2ObjectDataType<T extends Enum<T>, V> extends AbstractDataType implements Serializer{
     final Serializer typeSerializer;
     final Class<T> enumClass;
 

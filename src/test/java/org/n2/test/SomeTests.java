@@ -15,8 +15,12 @@ import java.util.*;
 
 public class SomeTests {
 
+    public enum SomeEnum {
+        P1, P2, P3;
+    }
+
     private static N2Database n2Database(String path){
-        MVStore store = new MVStore.Builder().fileName(path).autoCommitDisabled().open();
+        MVStore store = new MVStore.Builder().autoCommitDisabled().fileName(path).open();
         N2Config.BUilder b = new N2Config.BUilder();
         N2Config conf = b.configure("rTree").generator(false).mapSupplier(() -> new MVRTreeMap.Builder()
                         .valueType(b.versionedSerializer())
@@ -30,9 +34,9 @@ public class SomeTests {
 
     @Test
     public void test01(){
-        new File("data/test").delete();
+        new File("test/data/test").delete();
 
-        try(N2Database db = n2Database("data/test")){
+        try(N2Database db = n2Database("test/data/test")){
             N2Store some = db.store("some");
 
             N2Id id;
@@ -65,7 +69,7 @@ public class SomeTests {
 
     @Test
     public void test02(){
-        new File("data/testMap").delete();
+        new File("test/data/testMap").delete();
 
         N2Id id;
 
@@ -73,7 +77,7 @@ public class SomeTests {
         data.put("a", new BigDecimal(1));
         data.put("b", new BigDecimal(2));
 
-        try(N2Database db = n2Database("data/testMap")) {
+        try(N2Database db = n2Database("test/data/testMap")) {
             N2Store some = db.store("some");
 
             try (N2Session ses = db.session()) {
@@ -84,7 +88,7 @@ public class SomeTests {
             }
         }
 
-        try(N2Database db = n2Database("data/testMap")){
+        try(N2Database db = n2Database("test/data/testMap")){
             N2Store some = db.store("some");
 
             try(N2Session ses = db.session()){
@@ -100,7 +104,7 @@ public class SomeTests {
 
     @Test
     public void test03(){
-        new File("data/testList").delete();
+        new File("test/data/testList").delete();
 
         N2Id id;
 
@@ -108,7 +112,7 @@ public class SomeTests {
         data.add(42);
         data.add(13);
 
-        try(N2Database db = n2Database("data/testList")) {
+        try(N2Database db = n2Database("test/data/testList")) {
             N2Store some = db.store("some");
 
             try (N2Session ses = db.session()) {
@@ -119,7 +123,7 @@ public class SomeTests {
             }
         }
 
-        try(N2Database db = n2Database("data/testList")){
+        try(N2Database db = n2Database("test/data/testList")){
             N2Store some = db.store("some");
 
             try(N2Session ses = db.session()){
@@ -135,7 +139,7 @@ public class SomeTests {
 
     @Test
     public void test04(){
-        new File("data/testSet").delete();
+        new File("test/data/testSet").delete();
 
         N2Id id;
 
@@ -143,7 +147,7 @@ public class SomeTests {
         data.add(8);
         data.add(7);
 
-        try(N2Database db = n2Database("data/testSet")) {
+        try(N2Database db = n2Database("test/data/testSet")) {
             N2Store some = db.store("some");
 
             try (N2Session ses = db.session()) {
@@ -154,7 +158,7 @@ public class SomeTests {
             }
         }
 
-        try(N2Database db = n2Database("data/testSet")){
+        try(N2Database db = n2Database("test/data/testSet")){
             N2Store some = db.store("some");
 
             try(N2Session ses = db.session()){
@@ -170,9 +174,9 @@ public class SomeTests {
 
     @Test
     public void test05(){
-        new File("data/testSetTree").delete();
+        new File("test/data/testSetTree").delete();
 
-        try(N2Database db = n2Database("data/testSetTree")) {
+        try(N2Database db = n2Database("test/data/testSetTree")) {
             N2Store some = db.store("rTree");
 
             HashSet<Integer> data = new HashSet<>();
@@ -191,14 +195,14 @@ public class SomeTests {
 
     @Test
     public void test06(){
-        new File("data/someEnum").delete();
+        new File("test/data/someEnum").delete();
 
         N2Id id;
 
         N2EnumObject<SomeEnum, Object> obj = new N2EnumObject<>(SomeEnum.class);
         obj.put(SomeEnum.P2, 3.5);
 
-        try(N2Database db = n2Database("data/someEnum")) {
+        try(N2Database db = n2Database("test/data/someEnum")) {
             N2Store some = db.store("some");
 
             try (N2Session ses = db.session()) {
@@ -209,7 +213,7 @@ public class SomeTests {
             }
         }
 
-        try(N2Database db = n2Database("data/someEnum")){
+        try(N2Database db = n2Database("test/data/someEnum")){
             N2Store some = db.store("some");
 
             try(N2Session ses = db.session()){
@@ -225,14 +229,14 @@ public class SomeTests {
 
     @Test
     public void test07(){
-        new File("data/someEnumTpe").delete();
+        new File("test/data/someEnumTpe").delete();
 
         N2Id id;
 
         N2EnumObject<SomeEnum, Object> obj = new N2EnumObject<>(SomeEnum.class);
         obj.put(SomeEnum.P2, 2.7);
 
-        try(N2Database db = n2Database("data/someEnumTpe")) {
+        try(N2Database db = n2Database("test/data/someEnumTpe")) {
             N2Store some = db.store("enum");
 
             try (N2Session ses = db.session()) {
@@ -243,7 +247,7 @@ public class SomeTests {
             }
         }
 
-        try(N2Database db = n2Database("data/someEnumTpe")){
+        try(N2Database db = n2Database("test/data/someEnumTpe")){
             N2Store some = db.store("enum");
 
             try(N2Session ses = db.session()){

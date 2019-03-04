@@ -32,8 +32,16 @@ public class N2SessionStore<K, V> {
         return store.remove(id);
     }
 
+    public Iterator<K> keyIterator(){
+        return keyIterator(null, null);
+    }
+
     public Iterator<K> keyIterator(K from, K to){
         return store.keyIterator(from, to, false);
+    }
+
+    public Iterator<Map.Entry<K, V>> iterator(){
+        return iterator(null, null);
     }
 
     public Iterator<Map.Entry<K, V>> iterator(K from, K to){

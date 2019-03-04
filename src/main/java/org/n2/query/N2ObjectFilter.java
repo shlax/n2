@@ -22,12 +22,12 @@ public class N2ObjectFilter<T extends Enum<T>, V> extends NotNullFilter<N2Object
         return fn.apply(v);
     }
 
-    public boolean test(T key, Predicate<? super V> predicate){
+    public boolean test(Enum key, Predicate<? super V> predicate){
         if(obj == null) return false;
 
         if(!obj.enumClass().equals(key.getClass())) return false;
 
-        V v = obj.get(key);
+        V v = obj.get((T)key);
         if(v == null) return false;
 
         return predicate.test(v);
