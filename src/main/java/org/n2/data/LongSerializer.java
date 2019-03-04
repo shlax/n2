@@ -5,7 +5,7 @@ import org.n2.AbstractDataType;
 
 import java.nio.ByteBuffer;
 
-public class LongSerializer extends AbstractDataType implements Serializer {
+public class LongSerializer implements AbstractDataType, Serializer {
     public static final LongSerializer INSTANCE = new LongSerializer();
 
     @Override

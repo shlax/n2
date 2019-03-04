@@ -6,7 +6,7 @@ import org.n2.AbstractDataType;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 
-public class BigIntegerSerializer extends AbstractDataType implements Serializer {
+public class BigIntegerSerializer implements AbstractDataType, Serializer {
     public static final BigIntegerSerializer INSTANCE = new BigIntegerSerializer();
 
     @Override

@@ -6,12 +6,15 @@ import java.nio.ByteBuffer;
 class N2ObjectType <T extends Enum<T>, V> extends AbstractN2Object<T, V> {
     final Class<T> enumClass;
     final Serializer typeSerializer;
-    final ByteBuffer buff;
 
-    N2ObjectType(Class<T> enumClass, ByteBuffer buffer, Serializer typeSerializer) {
+    final ByteBuffer buff;
+    final int off;
+
+    N2ObjectType(Class<T> enumClass, ByteBuffer buffer, int off, Serializer typeSerializer) {
         this.enumClass = enumClass;
         this.typeSerializer = typeSerializer;
         this.buff = buffer;
+        this.off = off;
     }
 
     @Override
@@ -46,7 +49,7 @@ class N2ObjectType <T extends Enum<T>, V> extends AbstractN2Object<T, V> {
         if(!init[index]){
             init[index] = true;
 
-            buff.position(4 * index);
+            buff.position(off + 4 * index);
             int pos = buff.getInt();
 
             if(pos != -1){

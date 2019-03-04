@@ -5,7 +5,7 @@ import org.n2.data.Serializer;
 
 import java.nio.ByteBuffer;
 
-public class N2IdDataType extends AbstractDataType implements Serializer {
+public class N2IdDataType implements AbstractDataType, Serializer {
     public static final N2IdDataType INSTANCE = new N2IdDataType();
 
     @Override

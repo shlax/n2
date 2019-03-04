@@ -5,7 +5,7 @@ import org.n2.AbstractDataType;
 
 import java.nio.ByteBuffer;
 
-public class ShortSerializer extends AbstractDataType implements Serializer {
+public class ShortSerializer implements AbstractDataType, Serializer {
     public static final ShortSerializer INSTANCE = new ShortSerializer();
 
     @Override

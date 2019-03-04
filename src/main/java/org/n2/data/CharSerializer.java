@@ -5,7 +5,7 @@ import org.n2.AbstractDataType;
 
 import java.nio.ByteBuffer;
 
-public class CharSerializer extends AbstractDataType implements Serializer{
+public class CharSerializer implements AbstractDataType, Serializer{
     public static final CharSerializer INSTANCE = new CharSerializer();
 
     @Override
