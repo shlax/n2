@@ -1,6 +1,6 @@
-package org.n2;
+package org.n2.data;
 
-import org.n2.data.Serializer;
+import org.n2.AbstractN2Object;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;

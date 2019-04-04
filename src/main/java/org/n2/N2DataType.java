@@ -5,7 +5,7 @@ import org.n2.data.TypeSerializer;
 
 import java.nio.ByteBuffer;
 
-public class N2DataType extends AbstractDataType{
+public class N2DataType implements AbstractDataType{
     final TypeSerializer typeSerializer;
 
     public N2DataType(int memory, TypeSerializer typeSerializer) {

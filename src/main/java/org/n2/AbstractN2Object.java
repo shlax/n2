@@ -2,7 +2,7 @@ package org.n2;
 
 import java.util.Objects;
 
-abstract class AbstractN2Object<T extends Enum<T>, V> implements N2Object<T, V> {
+public abstract class AbstractN2Object<T extends Enum<T>, V> implements N2Object<T, V> {
 
     @Override
     public boolean equals(Object o) {

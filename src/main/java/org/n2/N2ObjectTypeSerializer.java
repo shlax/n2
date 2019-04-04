@@ -4,26 +4,24 @@ import org.h2.mvstore.WriteBuffer;
 import org.n2.data.Serializer;
 
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 
-public class N2ObjectSerializer implements Serializer {
+public class N2ObjectTypeSerializer<T extends Enum<T>, V> implements Serializer {
+
     final Serializer typeSerializer;
+    final Class<T> enumClass;
 
-    public N2ObjectSerializer(Serializer typeSerializer) {
+    public N2ObjectTypeSerializer(Class<T> enumClass, Serializer typeSerializer) {
+        this.enumClass = enumClass;
         this.typeSerializer = typeSerializer;
     }
 
     @Override
     public void write(WriteBuffer buff, Object obj) {
         N2Object o = (N2Object)obj;
-        ByteBuffer bb = buff.getBuffer();
 
+        ByteBuffer bb = buff.getBuffer();
         int p0 = bb.position();
         buff.put(new byte[4]);
-
-        byte[] nm = o.enumClass().getName().getBytes(StandardCharsets.UTF_8);
-        buff.putInt(nm.length);
-        buff.put(nm);
 
         Enum[] keys = o.keys();
         int size = keys.length;
@@ -45,20 +43,21 @@ public class N2ObjectSerializer implements Serializer {
 
         int p2 = bb.position();
 
-        bb.position(p0);
-        bb.putInt(p2 - p0);
-
         bb.position(p1);
         for(int k : pos) bb.putInt(k);
+
+        bb.position(p0);
+        bb.putInt(p2 - (p0 + 4));
         bb.position(p2);
     }
 
     @Override
-    public N2BufferObject read(ByteBuffer buff) {
+    public N2ObjectType<T, V> read(ByteBuffer buff) {
         int off = buff.position();
         int skip = buff.getInt();
-        N2BufferObject c = new N2BufferObject(typeSerializer,buff, off + 4);
+        N2ObjectType c = new N2ObjectType(enumClass, buff, off + 4, typeSerializer);
         buff.position(off + skip);
         return c;
     }
+
 }
