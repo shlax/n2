@@ -10,7 +10,7 @@ public abstract class AbstractSource<T> implements Source<T>{
         for(Consumer<? super T> s : sinks) s.accept(t);
     }
 
-    protected final List<Consumer<? super T>> sinks = new ArrayList<>(1);
+    private final List<Consumer<? super T>> sinks = new ArrayList<>(1);
 
     @Override
     public Source<T> to(Consumer<? super T> s) {
