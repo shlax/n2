@@ -2,10 +2,10 @@ package org.n2.flow;
 
 public class JoinFlow<U, V, K extends Comparable<K>, R> extends AbstractSource<R> {
 
-    final Join<U, V, K, R> join;
+    private final Join<U, V, K, R> join;
 
-    final Source<U> su;
-    final Source<V> sv;
+    private final Source<U> su;
+    private final Source<V> sv;
 
     public JoinFlow(Source<U> su, Source<V> sv, Join<U, V, K, R> join) {
         this.join = join;
@@ -16,16 +16,16 @@ public class JoinFlow<U, V, K extends Comparable<K>, R> extends AbstractSource<R
         sv.to(this::setV);
     }
 
-    K ku = null;
-    K kv = null;
+    private K ku = null;
+    private K kv = null;
 
-    U du = null;
-    V dv = null;
+    private U du = null;
+    private V dv = null;
 
-    boolean au = false;
-    boolean av = false;
+    private boolean au = false;
+    private boolean av = false;
 
-    void setU(U u){
+    private void setU(U u){
         if(au) throw new IllegalStateException();
         ku = join.keyU(u);
         if(ku == null) throw new NullPointerException("key U is null");
@@ -33,7 +33,7 @@ public class JoinFlow<U, V, K extends Comparable<K>, R> extends AbstractSource<R
         du = u;
     }
 
-    void setV(V v){
+    private void setV(V v){
         if(av) throw new IllegalStateException();
         kv = join.keyV(v);
         if(kv == null) throw new NullPointerException("key V is null");
@@ -41,8 +41,8 @@ public class JoinFlow<U, V, K extends Comparable<K>, R> extends AbstractSource<R
         dv = v;
     }
 
-    boolean nextU = true;
-    boolean nextV = true;
+    private boolean nextU = true;
+    private boolean nextV = true;
 
     @Override
     public boolean next() {

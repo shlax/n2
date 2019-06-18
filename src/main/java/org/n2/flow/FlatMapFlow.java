@@ -2,7 +2,7 @@ package org.n2.flow;
 
 public class FlatMapFlow<U, V> extends AbstractFlow<U, V>{
 
-    final FlatMap<U, V> fn;
+    private final FlatMap<U, V> fn;
 
     public FlatMapFlow(Source<U> source, FlatMap<U, V> fn) {
         super(source);

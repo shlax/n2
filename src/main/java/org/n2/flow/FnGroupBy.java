@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 
 public class FnGroupBy<T, K, V> implements GroupBy<T, K, V> {
 
-    final Function<T, K> toKey;
-    final V zero;
-    final BiFunction<V, T, V> fold;
+    private final Function<T, K> toKey;
+    private final V zero;
+    private final BiFunction<V, T, V> fold;
 
     public FnGroupBy(Function<T, K> toKey, V zero, BiFunction<V, T, V> fold) {
         this.toKey = toKey;
@@ -16,7 +16,7 @@ public class FnGroupBy<T, K, V> implements GroupBy<T, K, V> {
         this.fold = fold;
     }
 
-    V v;
+    private V v;
 
     @Override
     public K key(T t) {

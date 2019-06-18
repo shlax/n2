@@ -4,13 +4,13 @@ import java.util.Iterator;
 
 public class IteratorSource<T> extends AbstractSource<T> {
 
-    final Iterator<T> source;
+    private final Iterator<T> source;
 
     public IteratorSource(Iterator<T> source) {
         this.source = source;
     }
 
-    boolean n = true;
+    private boolean n = true;
 
     @Override
     public boolean next() {

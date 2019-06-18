@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class GroupFlow <T, K, V> extends AbstractFlow<T, V>{
 
-    final GroupBy<T, K, V> groupBy;
+    private final GroupBy<T, K, V> groupBy;
 
     public GroupFlow(Source<T> source, GroupBy<T, K, V> groupBy) {
         super(source);
@@ -21,7 +21,7 @@ public class GroupFlow <T, K, V> extends AbstractFlow<T, V>{
         return n;
     }
 
-    K key = null;
+    private K key = null;
 
     @Override
     public void accept(T u) {

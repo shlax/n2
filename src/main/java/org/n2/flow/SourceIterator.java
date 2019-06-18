@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 public class SourceIterator<T> implements Iterator<T>, Consumer<T> {
 
-    final Source<T> source;
+    private final Source<T> source;
 
     public SourceIterator(Source<T> source) {
         this.source = source;

@@ -6,10 +6,10 @@ import java.util.function.Function;
 
 public class FnJoin<U, V, K extends Comparable<K>, R> implements Join<U, V, K, R>{
 
-    final Function<U, K> keyU;
-    final Function<V, K> keyV;
+    private final Function<U, K> keyU;
+    private final Function<V, K> keyV;
 
-    final BiFunction<U, V, R> combine;
+    private final BiFunction<U, V, R> combine;
 
     public FnJoin(Function<U, K> keyU, Function<V, K> keyV, BiFunction<U, V, R> combine) {
         this.keyU = keyU;

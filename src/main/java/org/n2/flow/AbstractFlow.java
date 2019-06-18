@@ -2,7 +2,7 @@ package org.n2.flow;
 
 public abstract class AbstractFlow<U, V> extends AbstractSource<V> implements Flow<U, V>{
 
-    final Source<U> source;
+    private final Source<U> source;
 
     public AbstractFlow(Source<U> source) {
         this.source = source;
